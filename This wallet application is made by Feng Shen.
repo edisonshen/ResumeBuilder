@@ -1,0 +1,15 @@
+This wallet application is made by Feng Shen.
+
+How to implement it ?
+1. go to walletpp directory
+2. in a terminal 
+> rails s
+3. type "localhost:3000" in a browser (this application only tested in Chrome so far)
+4.  use user: admin    ; password: admin to login.
+enjoy the application
+
+
+contact:
+
+Feng Shen
+shenfeng@unm.edu

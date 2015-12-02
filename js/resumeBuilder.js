@@ -1,17 +1,19 @@
+
+
 var bio = {
 	"name" : "Feng Shen",
 	"role" : "Web Developer",
 	"contacts" : 
 	{
-	 "email" : "Feng Shen",
-	 "mobile" : "505-814-9685",
-	 "github" : "edisonshen",
-	 "location" : "Albuquerque",
-	 "twitter" : "@edisonshen"
+	 "Email" : "Feng Shen",
+	 "Mobile" : "505-814-9685",
+	 "Github" : "https://github.com/edisonshen",
+	 "Locations" : "Albuquerque",
+	 "Twitter" : "@edisonshen"
 	},
-	"welcomeMessage" : "Hello World",
-	"skills" : ["Java" , "Python", "Javascrpit", "C"],
-	"bioPic" : "not availiable"
+	"WelcomeMessage" : "Hello World",
+	"skills" : ["Java" , "Python", "Javascrpit", "C", "Matlab", "HTML5", "CSS3"],
+	"bioPic" : "images/photo.jpg"
 }
 
 
@@ -22,7 +24,7 @@ var education = {
 			"city" : "China",
 			"degree" : "Bachelor",
 			"majors" : "optical information and technology",
-			"data" : "2012",
+			"date" : "2008-2012",
 			"url" : "http://ahu.edu.cn"
 		},
 		{
@@ -30,7 +32,7 @@ var education = {
 			"city" : "Albuquerque",
 			"degree" : "Master",
 			"majors" : "Optical Science and Engineering",
-			"date" : "2014",
+			"date" : "2012-2014",
 			"url" : "http://www.unm.edu"
 		},
 		{
@@ -41,6 +43,14 @@ var education = {
 			"date" : "2013-2016",
 			"url" : "http://cs.unm.edu/~edisonshen"
 		}
+	],
+	"onlineCourses" : [
+	{
+		"title" : "Front End Nano Degree",
+		"school" : "Udacty",
+		"date" : "Sep,2015 -- Present",
+		"url" : "www.Udacty.com"
+	}
 	]
 }
 
@@ -56,7 +66,7 @@ var work = {
 			"employer" : "University of New Mexico",
 			"title" : "Project Assistant",
 			"date" : "Jan, 2014 - Dec, 2014",
-			"description": "Manage the study plan of football team of university of new mexico"
+			"description": "Manage the study plan of NCAA men's football team of university of new mexico"
 		},
 		{
 			"employer" : "DTM",
@@ -72,33 +82,56 @@ var projects = {
 		{
 			"title" : "Udacity",
 			"dates" : "2015",
-			"description" : "web developer"
+			"description" : "web developer",
+			"imanges" : [","]
 		}
 	]
 
 }
-
-
-if (bio.skills.length > 0 )
+function displayBio()
 {
-	$("#header").append(HTMLskillsStart);
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
 
-	var formattedSkill = HTMLskills.replace("%data%" , bio.skills[0]);
+	$("#header").prepend(formattedName, formattedRole);
 
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%" , bio.skills[1]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%" , bio.skills[2]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%" , bio.skills[3]);
 
-	$("#skills").append(formattedSkill);
 
+	// $("#main").append(HTMLcontactGeneric);
+	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.Mobile);
+	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.Email);
+	var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.Twitter);
+	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.Github);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.Locations);
+
+	$("#topContacts").append(formattedMobile);
+	$("#topContacts").append(formattedEmail);
+	$("#topContacts").append(formattedTwitter);
+	$("#topContacts").append(formattedGithub);
+	$("#topContacts").append(formattedLocation);
+
+
+
+	var formattedPic = HTMLbioPic.replace("%data%", bio.bioPic);
+	$("#header").append(formattedPic);
+
+
+	if (bio.skills.length > 0 )
+	{
+		$("#header").append(HTMLskillsStart);
+
+		for (skill in bio.skills)
+			{
+				var formattedSkill = HTMLskills.replace("%data%" , bio.skills[skill]);
+				$("#skills").append(formattedSkill);
+		
+			}
+	}
 }
 
 function displayWork() {
 for (job in work.jobs) 
-{
+	{
 	$("#workExperience").append(HTMLworkStart);
 
 	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
@@ -120,7 +153,7 @@ for (job in work.jobs)
 
 }
 
-displayWork();
+
 
 function inName(name) {
 	nameArray = name.slice(" ");
@@ -130,7 +163,7 @@ function inName(name) {
 	return nameArray[0] + " " + nameArray[1];
 }
 
-$("#main").append(internationalizeButton);
+// $("#main").append(internationalizeButton);
 
 
 projects.display = function () 
@@ -161,9 +194,42 @@ projects.display = function ()
 	}	
 }
 
+education.display = function (){
+	for (school in education.schools)
+	{
+		$("#education").append(HTMLschoolStart);
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+		var formattedSchoolCity = HTMLschoolLocation.replace("%data%", education.schools[school].city);		
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
+		var formattedSchoolDate = HTMLschoolDates.replace("%data%", education.schools[school].date);
+		
+		$(".education-entry:last").append(formattedSchoolName, formattedSchoolDegree, formattedSchoolDate,formattedSchoolCity, formattedSchoolMajor);
+
+	}
+	// $(".education:last").append();
+	for (classes in education.onlineCourses) 
+	{
+		
+		var formattedOnlineName = HTMLonlineTitle.replace("%data%", education.onlineCourses[classes].title);
+
+		var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[classes].school);				
+		var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses[classes].date);
+
+		$(".education-entry:last").append(HTMLonlineClasses,formattedOnlineName, formattedOnlineSchool, formattedOnlineDate);
+	}
+		
+
+	
+}
+
+
+
+
 projects.display();
-
-
+displayWork();
+displayBio();
+education.display()
 $("#mapDiv").append(googleMap);
 
 

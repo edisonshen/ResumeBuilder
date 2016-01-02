@@ -8,11 +8,11 @@ var bio = {
 	 "Email" : "Feng Shen",
 	 "Mobile" : "505-814-9685",
 	 "Github" : "https://github.com/edisonshen",
-	 "Locations" : "Albuquerque",
+	 "location" : ["Albuquerque"],
 	 "Twitter" : "@edisonshen"
 	},
 	"WelcomeMessage" : "Hello World",
-	"skills" : ["Java" , "Python", "Javascrpit", "C", "Matlab", "HTML5", "CSS3"],
+	"skills" : ["Java" , "Python", "Javascrpit", "C", "Matlab", "HTML5", "CSS3","jQuery", "Node.js", "Ruby on rails"],
 	"bioPic" : "images/photo.jpg"
 }
 
@@ -40,7 +40,7 @@ var education = {
 			"city" : "Albuquerque",
 			"degree" : "Master",
 			"majors" : "Computer Science",
-			"date" : "2013-2016",
+			"date" : "2014-2016",
 			"url" : "http://cs.unm.edu/~edisonshen"
 		}
 	],
@@ -66,13 +66,13 @@ var work = {
 			"employer" : "University of New Mexico",
 			"title" : "Project Assistant",
 			"date" : "Jan, 2014 - Dec, 2014",
-			"description": "Manage the study plan of NCAA men's football team of university of new mexico"
+			"description": "Manage the study plan of football team of university of new mexico"
 		},
 		{
 			"employer" : "DTM",
 			"title" : "Web Developer",
 			"date" : "Nov, 2015 - Dec, present",
-			"description": "Manage the study plan of football team of university of new mexico"
+			"description": "Co-developed a dynamic, secure Web site from scratch. Launched visually appealing, user-friendly web pages with wordpress"
 		}
 	]
 
@@ -80,10 +80,16 @@ var work = {
 var projects = {
 	"projects" : [
 		{
-			"title" : "Udacity",
+			"title" : "WEB APPLICATION FOR ACADEMIC PROGRAM REVIEW (APR) OFFICE OF UNM",
 			"dates" : "2015",
-			"description" : "web developer",
-			"imanges" : [","]
+			"description" : " Design and development of web pages for apr office of unm based on Ruby on Rails.Developed the database model and authorization control (primarily using mysql and CAS system.)",
+			"images" : ["images/apr.png"]
+		},
+		{
+			"title" : "Exploring the relationship between topological changes in arena and their effect on foraging efficiency",
+			"dates" : "2015",
+			"description" : "This project simulated the behaviours ants when they hunting food. We explored the relationship between topological changes in arena and their effect on foraging efficiency. We varied the number of obstacles placed in the arena and observed its effect on efficiency of collection.",
+			"images" : ["images/cs523.png"]
 		}
 	]
 
@@ -102,7 +108,7 @@ function displayBio()
 	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.Email);
 	var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.Twitter);
 	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.Github);
-	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.Locations);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.locations);
 
 	$("#topContacts").append(formattedMobile);
 	$("#topContacts").append(formattedEmail);
@@ -181,15 +187,15 @@ projects.display = function ()
 		var formattedDescript = HTMLprojectDescription.replace("%data%", projects.projects[p].description);
 		$(".project-entry:last").append(formattedDescript);
 
-		// if (projects.projects[p].image.length > 0)
-		// {
-		// 	for (image in projects.projects[p].images) 
-		// 	{
-		// 		var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[p].images[image]);
-		// 		$("#project-entry:last").append(formattedImage);
+		if (projects.projects[p].images.length > 0)
+		{
+			for (image in projects.projects[p].images) 
+			{
+				var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[p].images[image]);
+				$(".project-entry:last").append(formattedImage);
 
-		// 	}
-		// }
+			}
+		}
 
 	}	
 }
@@ -230,6 +236,8 @@ projects.display();
 displayWork();
 displayBio();
 education.display()
+
+
 $("#mapDiv").append(googleMap);
 
 

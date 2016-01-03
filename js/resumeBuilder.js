@@ -161,16 +161,6 @@ for (var job in work.jobs)
 
 
 
-function inName(name) {
-	nameArray = name.slice(" ");
-	
-	nameArray[0] = nameArray[0].slice(0,1).toUpperCase() + nameArray[0].slice(1).toLowerCase();
-	nameArray[1]= nameArray[1].toUpperCase();
-	return nameArray[0] + " " + nameArray[1];
-}
-
-// $("#main").append(internationalizeButton);
-
 
 projects.display = function () 
 {
@@ -213,7 +203,6 @@ education.display = function (){
 		$(".education-entry:last").append(formattedSchoolName, formattedSchoolDegree, formattedSchoolDate,formattedSchoolCity, formattedSchoolMajor);
 
 	}
-	// $(".education:last").append();
 	for (var classes in education.onlineCourses) 
 	{
 		

@@ -14,7 +14,7 @@ var bio = {
 	"WelcomeMessage" : "Hello World",
 	"skills" : ["Java" , "Python", "Javascrpit", "C", "Matlab", "HTML5", "CSS3","jQuery", "Node.js", "Ruby on rails"],
 	"bioPic" : "images/photo.jpg"
-}
+};
 
 
 var education = {
@@ -52,7 +52,7 @@ var education = {
 		"url" : "www.Udacty.com"
 	}
 	]
-}
+};
 
 var work = {
 	"jobs" : [
@@ -76,7 +76,7 @@ var work = {
 		}
 	]
 
-}
+};
 var projects = {
 	"projects" : [
 		{
@@ -93,7 +93,7 @@ var projects = {
 		}
 	]
 
-}
+};
 function displayBio()
 {
 	var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -126,7 +126,7 @@ function displayBio()
 	{
 		$("#header").append(HTMLskillsStart);
 
-		for (skill in bio.skills)
+		for (var skill in bio.skills)
 			{
 				var formattedSkill = HTMLskills.replace("%data%" , bio.skills[skill]);
 				$("#skills").append(formattedSkill);
@@ -136,7 +136,7 @@ function displayBio()
 }
 
 function displayWork() {
-for (job in work.jobs) 
+for (var job in work.jobs) 
 	{
 	$("#workExperience").append(HTMLworkStart);
 
@@ -174,7 +174,7 @@ function inName(name) {
 
 projects.display = function () 
 {
-	for ( p in projects.projects) 
+	for ( var p in projects.projects) 
 	{
 		$("#projects").append(HTMLprojectStart);
 
@@ -198,10 +198,10 @@ projects.display = function ()
 		}
 
 	}	
-}
+};
 
 education.display = function (){
-	for (school in education.schools)
+	for (var school in education.schools)
 	{
 		$("#education").append(HTMLschoolStart);
 		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
@@ -214,7 +214,7 @@ education.display = function (){
 
 	}
 	// $(".education:last").append();
-	for (classes in education.onlineCourses) 
+	for (var classes in education.onlineCourses) 
 	{
 		
 		var formattedOnlineName = HTMLonlineTitle.replace("%data%", education.onlineCourses[classes].title);
@@ -223,20 +223,13 @@ education.display = function (){
 		var formattedOnlineDate = HTMLonlineDates.replace("%data%", education.onlineCourses[classes].date);
 
 		$(".education-entry:last").append(HTMLonlineClasses,formattedOnlineName, formattedOnlineSchool, formattedOnlineDate);
-	}
-		
-
-	
-}
-
-
-
+	}	
+};
 
 projects.display();
 displayWork();
 displayBio();
-education.display()
-
+education.display();
 
 $("#mapDiv").append(googleMap);
 
